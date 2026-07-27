@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sklep kamieniarski Chojnice - nagrobki, blaty, parapety | Zakład Kamieniarski Rafał Moga</title>
+<meta name="description" content="Sklep kamieniarski w Chojnicach: nagrobki granitowe, grobowce, blaty kuchenne, parapety, schody i obudowy kominków. Wybierz pozycje i wyślij zapytanie. Tel. +48 509 218 049.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.filtry{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:var(--space-6)}
+.chip{border:1px solid rgba(0,0,0,.16);background:transparent;border-radius:999px;padding:.5rem 1.1rem;font:inherit;font-size:var(--text-sm);cursor:pointer;transition:.2s}
+.chip:hover{border-color:rgba(0,0,0,.4)}
+.chip.is-on{background:var(--ink,#23262b);color:#fff;border-color:transparent}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--space-6)}
+.prod{border:1px solid rgba(0,0,0,.1);border-radius:var(--radius,4px);overflow:hidden;display:flex;flex-direction:column;background:#fff}
+.prod-art{aspect-ratio:4/3;overflow:hidden}
+.prod-art img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.prod:hover .prod-art img{transform:scale(1.04)}
+.prod-body{padding:var(--space-5);display:flex;flex-direction:column;gap:.7rem;flex:1}
+.prod-body h3{font-size:var(--text-lg,1.15rem);margin:0}
+.prod-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;padding-top:.6rem}
+.price{font-size:var(--text-sm);letter-spacing:.04em;text-transform:uppercase;opacity:.7}
+.prod .add{padding:.55rem 1rem;font-size:var(--text-sm);cursor:pointer}
+.prod .add.is-in{background:var(--accent,#8a7457);color:#fff;border-color:transparent}
+.koszyk-band{background:rgba(0,0,0,.04)}
+.koszyk{display:grid;grid-template-columns:1.4fr 1fr;gap:var(--space-7);align-items:start}
+.koszyk-lista{list-style:none;padding:0;margin:.8rem 0 0;display:flex;flex-direction:column;gap:.45rem}
+.koszyk-lista li{display:flex;justify-content:space-between;gap:1rem;border-bottom:1px dashed rgba(0,0,0,.16);padding-bottom:.35rem;font-size:var(--text-sm)}
+.koszyk-lista button{border:0;background:none;cursor:pointer;font:inherit;opacity:.6}
+.koszyk-akcje{display:flex;flex-direction:column;gap:.7rem}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-6)}
+.step .num{display:block;font-size:var(--text-sm);letter-spacing:.14em;opacity:.55;margin-bottom:.4rem}
+.step h4{margin:0 0 .4rem}
+@media(max-width:860px){.koszyk{grid-template-columns:1fr}}
+</style>
+
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html"><span class="name">Zakład Kamieniarski Rafał Moga</span><span class="sub">Nagrobki i kamieniarstwo</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Strona główna</a>
+      <a href="realizacje.html">Realizacje</a>
+      <a href="oferta.html">Oferta</a>
+      <a href="o-nas.html">O mnie</a>
+      <a href="sklep.html" class="active">Sklep</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="kontakt.html" class="btn btn-accent">Zapytaj o wycenę</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="pagehead">
+  <img src="img/blat3.jpg" alt="Zakład Kamieniarski Rafał Moga - sklep kamieniarski">
+  <div class="wrap">
+    <span class="eyebrow">Sklep</span>
+    <h1>Zamów kamień online</h1>
+    <p>Wybierz pozycje z katalogu i wyślij zapytanie. Wycenę z ceną i terminem odsyłam tego samego albo następnego dnia roboczego.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Katalog</span>
+      <h2>Co robię z kamienia</h2>
+      <p>Każda pozycja powstaje na wymiar, dlatego zamiast gotowych cen dostajesz wycenę pod swój projekt. Wybierz, co Cię interesuje, a resztę ustalimy przez telefon.</p>
+    </div>
+    <div class="filtry reveal">
+      <button class="chip is-on" data-f="all" type="button">Wszystko</button>
+      <button class="chip" data-f="cmentarz" type="button">Nagrobki i cmentarz</button>
+      <button class="chip" data-f="wnetrza" type="button">Blaty, parapety, schody</button>
+    </div>
+    <div class="prod-grid">
+      <article class="prod reveal" data-kat="cmentarz">
+        <div class="prod-art"><img src="img/g2.jpg" alt="Nagrobek pojedynczy" loading="lazy"></div>
+        <div class="prod-body">
+          <h3>Nagrobek pojedynczy</h3>
+          <p class="muted">Granit w kolorze do wyboru, płyta, tablica i obramowanie. W cenie projekt z wymiarami, liternictwo i montaż na fundamencie.</p>
+          <div class="prod-foot">
+            <span class="price">Wycena indywidualna</span>
+            <button class="btn btn-ghost add" data-nazwa="Nagrobek pojedynczy" type="button">Dodaj do zapytania</button>
+          </div>
+        </div>
+      </article>
+      <article class="prod reveal" data-kat="cmentarz">
+        <div class="prod-art"><img src="img/g3.jpg" alt="Nagrobek podwójny i rodzinny" loading="lazy"></div>
+        <div class="prod-body">
+          <h3>Nagrobek podwójny i rodzinny</h3>
+          <p class="muted">Pomnik pod dwie osoby albo grób rodzinny z miejscem na kolejne tablice. Układ planuję tak, żeby dopisy dało się zrobić bez rozbierania całości.</p>
+          <div class="prod-foot">
+            <span class="price">Wycena indywidualna</span>
+            <button class="btn btn-ghost add" data-nazwa="Nagrobek podwójny i rodzinny" type="button">Dodaj do zapytania</button>
+          </div>
+        </div>
+      </article>
+      <article class="prod reveal" data-kat="cmentarz">
+        <div class="prod-art"><img src="img/g4.jpg" alt="Grobowiec z komorami" loading="lazy"></div>
+        <div class="prod-body">
+          <h3>Grobowiec z komorami</h3>
+          <p class="muted">Murowana piwnica pod wybraną liczbę pochówków, zbrojona, z odprowadzeniem wody. Płyta wierzchnia osadzona tak, żeby dało się ją podnieść.</p>
+          <div class="prod-foot">
+            <span class="price">Wycena indywidualna</span>
+            <button class="btn btn-ghost add" data-nazwa="Grobowiec z komorami" type="button">Dodaj do zapytania</button>
+          </div>
+        </div>
+      </article>
+      <article class="prod reveal" data-kat="cmentarz">
+        <div class="prod-art"><img src="img/g5.jpg" alt="Renowacja nagrobka" loading="lazy"></div>
+        <div class="prod-body">
+          <h3>Renowacja nagrobka</h3>
+          <p class="muted">Czyszczenie kamienia, uzupełnienie ubytków, impregnacja płyty i odnowienie liter. Przed wyceną oglądam grób i mówię wprost, czy renowacja ma sens.</p>
+          <div class="prod-foot">
+            <span class="price">Wycena indywidualna</span>
+            <button class="btn btn-ghost add" data-nazwa="Renowacja nagrobka" type="button">Dodaj do zapytania</button>
+          </div>
+        </div>
+      </article>
+      <article class="prod reveal" data-kat="cmentarz">
+        <div class="prod-art"><img src="img/g8.jpg" alt="Liternictwo i dopisy" loading="lazy"></div>
+        <div class="prod-body">
+          <h3>Liternictwo i dopisy</h3>
+          <p class="muted">Nowy napis, dopisanie daty albo odnowienie starych liter. Do wyboru litery kute, malowane i złocone.</p>
+          <div class="prod-foot">
+            <span class="price">Wycena indywidualna</span>
+            <button class="btn btn-ghost add" data-nazwa="Liternictwo i dopisy" type="button">Dodaj do zapytania</button>
+          </div>
+        </div>
+      </article>
+      <article class="prod reveal" data-kat="cmentarz">
+        <div class="prod-art"><img src="img/g7.jpg" alt="Krzyże, wazony i lampiony" loading="lazy"></div>
+        <div class="prod-body">
+          <h3>Krzyże, wazony i lampiony</h3>
+          <p class="muted">Galanteria z tego samego kamienia co pomnik: krzyż, wazon, lampion, tabliczka. Dobieram tak, żeby kolor i połysk się zgadzały.</p>
+          <div class="prod-foot">
+            <span class="price">Wycena indywidualna</span>
+            <button class="btn btn-ghost add" data-nazwa="Krzyże, wazony i lampiony" type="button">Dodaj do zapytania</button>
+          </div>
+        </div>
+      </article>
+      <article class="prod reveal" data-kat="wnetrza">
+        <div class="prod-art"><img src="img/blat1.jpg" alt="Blat kuchenny z granitu" loading="lazy"></div>
+        <div class="prod-body">
+          <h3>Blat kuchenny z granitu</h3>
+          <p class="muted">Blat docinany pod wymiar zabudowy, z wycięciem pod zlew i płytę. Krawędź do wyboru, powierzchnia polerowana albo satynowa.</p>
+          <div class="prod-foot">
+            <span class="price">Wycena indywidualna</span>
+            <button class="btn btn-ghost add" data-nazwa="Blat kuchenny z granitu" type="button">Dodaj do zapytania</button>
+          </div>
+        </div>
+      </article>
+      <article class="prod reveal" data-kat="wnetrza">
+        <div class="prod-art"><img src="img/blat2.jpg" alt="Wyspa i blat pod wymiar" loading="lazy"></div>
+        <div class="prod-body">
+          <h3>Wyspa i blat pod wymiar</h3>
+          <p class="muted">Duże płyty na wyspę kuchenną, z podcięciem i okapem. Przed cięciem robię szablon z natury, więc blat wchodzi bez luzów.</p>
+          <div class="prod-foot">
+            <span class="price">Wycena indywidualna</span>
+            <button class="btn btn-ghost add" data-nazwa="Wyspa i blat pod wymiar" type="button">Dodaj do zapytania</button>
+          </div>
+        </div>
+      </article>
+      <article class="prod reveal" data-kat="wnetrza">
+        <div class="prod-art"><img src="img/granit.jpg" alt="Parapety wewnętrzne i zewnętrzne" loading="lazy"></div>
+        <div class="prod-body">
+          <h3>Parapety wewnętrzne i zewnętrzne</h3>
+          <p class="muted">Parapety z granitu i marmuru, docinane pod wnękę okienną. Na zewnątrz kamień mrozoodporny, z okapnikiem.</p>
+          <div class="prod-foot">
+            <span class="price">Wycena indywidualna</span>
+            <button class="btn btn-ghost add" data-nazwa="Parapety wewnętrzne i zewnętrzne" type="button">Dodaj do zapytania</button>
+          </div>
+        </div>
+      </article>
+      <article class="prod reveal" data-kat="wnetrza">
+        <div class="prod-art"><img src="img/schody1.jpg" alt="Schody granitowe" loading="lazy"></div>
+        <div class="prod-body">
+          <h3>Schody granitowe</h3>
+          <p class="muted">Stopnie i podstopnice z litego kamienia, z antypoślizgowym wykończeniem krawędzi. Montaż na gotowej konstrukcji.</p>
+          <div class="prod-foot">
+            <span class="price">Wycena indywidualna</span>
+            <button class="btn btn-ghost add" data-nazwa="Schody granitowe" type="button">Dodaj do zapytania</button>
+          </div>
+        </div>
+      </article>
+      <article class="prod reveal" data-kat="wnetrza">
+        <div class="prod-art"><img src="img/schody3.jpg" alt="Stopnie i podesty zewnętrzne" loading="lazy"></div>
+        <div class="prod-body">
+          <h3>Stopnie i podesty zewnętrzne</h3>
+          <p class="muted">Wejścia, tarasy i podesty z kamienia odpornego na mróz i sól. Powierzchnia płomieniowana, żeby nie ślizgało się po deszczu.</p>
+          <div class="prod-foot">
+            <span class="price">Wycena indywidualna</span>
+            <button class="btn btn-ghost add" data-nazwa="Stopnie i podesty zewnętrzne" type="button">Dodaj do zapytania</button>
+          </div>
+        </div>
+      </article>
+      <article class="prod reveal" data-kat="wnetrza">
+        <div class="prod-art"><img src="img/kominek2.jpg" alt="Obudowa kominka" loading="lazy"></div>
+        <div class="prod-body">
+          <h3>Obudowa kominka</h3>
+          <p class="muted">Obudowa z granitu albo marmuru pod konkretny wkład, docięta na wymiar. Kamień dobieramy razem z płyty w zakładzie.</p>
+          <div class="prod-foot">
+            <span class="price">Wycena indywidualna</span>
+            <button class="btn btn-ghost add" data-nazwa="Obudowa kominka" type="button">Dodaj do zapytania</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="koszyk-band">
+  <div class="wrap">
+    <div class="koszyk reveal">
+      <div>
+        <span class="eyebrow">Twoje zapytanie</span>
+        <h3 id="koszyk-tytul">Lista jest pusta</h3>
+        <ul id="koszyk-lista" class="koszyk-lista"></ul>
+        <p class="muted" id="koszyk-podpowiedz">Dodaj pozycje z katalogu, a przygotuję je do wysyłki jednym kliknięciem.</p>
+      </div>
+      <div class="koszyk-akcje">
+        <a id="wyslij-sms" class="btn btn-accent" href="sms:+48509218049">Wyślij zapytanie SMS <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="tel:+48509218049">Zadzwoń: +48 509 218 049</a>
+        <button class="btn btn-ghost" id="czysc" type="button">Wyczyść listę</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Jak to działa</span>
+      <h2>Od zapytania do montażu</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><span class="num">01</span><h4>Wybierasz pozycje</h4><p class="muted">Zaznaczasz, co Cię interesuje, i wysyłasz listę SMS-em albo dzwonisz.</p></div>
+      <div class="step reveal"><span class="num">02</span><h4>Ustalamy szczegóły</h4><p class="muted">Pytam o wymiary, kolor kamienia i miejsce montażu. Przy nagrobku sprawdzam wymagania zarządcy cmentarza.</p></div>
+      <div class="step reveal"><span class="num">03</span><h4>Dostajesz wycenę</h4><p class="muted">Cena rozpisana na pozycje: kamień, obróbka, liternictwo, montaż. Bez dopisków po fakcie.</p></div>
+      <div class="step reveal"><span class="num">04</span><h4>Wykonanie i montaż</h4><p class="muted">Kamień docinam u siebie w zakładzie, potem przywożę i montuję na miejscu.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Współpraca</span>
+      <h2>Nie wiesz, czego szukasz?</h2>
+      <p>Opisz, co ma powstać, a podpowiem materiał i podam cenę.</p>
+    </div>
+    <div class="cta-actions reveal">
+      <a href="kontakt.html" class="btn btn-light">Zapytaj o wycenę <span class="arr">→</span></a>
+      <a href="tel:+48509218049" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.3)">+48 509 218 049</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="name">Zakład Kamieniarski Rafał Moga</div>
+        <p>Najpierw zobaczysz projekt i pełną wycenę. Kamień zamawiam dopiero, gdy wszystko Ci pasuje.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Nawigacja</h4>
+        <a href="index.html">Strona główna</a>
+        <a href="realizacje.html">Realizacje</a>
+        <a href="oferta.html">Oferta</a>
+        <a href="o-nas.html">O mnie</a>
+        <a href="sklep.html">Sklep</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <a href="tel:+48509218049">+48 509 218 049</a>
+        <p>Kościerska 14, 89-600 Chojnice</p>
+        <a href="https://maps.google.com/?cid=12086845877738569037" target="_blank" rel="noopener">Jak dojechać →</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Zakład Kamieniarski Rafał Moga</span>
+      <span>Projekt strony: Krzysztof Brzeziński</span>
+    </div>
+  </div>
+</footer>
+
+
+<script src="assets/main.js"></script>
+<script>
+(function(){
+  var lista=[];
+  var ul=document.getElementById('koszyk-lista'), ttl=document.getElementById('koszyk-tytul'),
+      pod=document.getElementById('koszyk-podpowiedz'), sms=document.getElementById('wyslij-sms');
+  function render(){
+    ul.innerHTML='';
+    lista.forEach(function(n,i){
+      var li=document.createElement('li');
+      li.innerHTML='<span>'+n+'</span>';
+      var b=document.createElement('button'); b.type='button'; b.textContent='usuń';
+      b.onclick=function(){ lista.splice(i,1); sync(); };
+      li.appendChild(b); ul.appendChild(li);
+    });
+    ttl.textContent = lista.length ? ('Wybrane pozycje: '+lista.length) : 'Lista jest pusta';
+    pod.style.display = lista.length ? 'none' : '';
+    var tresc = lista.length ? ('Dzien dobry, pytam o wycene: '+lista.join(', ')+'.') : '';
+    sms.setAttribute('href','sms:+48509218049'+(tresc?('&body='+encodeURIComponent(tresc)):''));
+  }
+  function sync(){
+    render();
+    document.querySelectorAll('.add').forEach(function(b){
+      b.classList.toggle('is-in', lista.indexOf(b.dataset.nazwa)>-1);
+      b.textContent = lista.indexOf(b.dataset.nazwa)>-1 ? 'W zapytaniu' : 'Dodaj do zapytania';
+    });
+  }
+  document.querySelectorAll('.add').forEach(function(b){
+    b.addEventListener('click', function(){
+      var n=b.dataset.nazwa, i=lista.indexOf(n);
+      if(i>-1) lista.splice(i,1); else lista.push(n);
+      sync();
+      if(lista.length===1) document.querySelector('.koszyk-band').scrollIntoView({behavior:'smooth',block:'center'});
+    });
+  });
+  document.getElementById('czysc').addEventListener('click', function(){ lista=[]; sync(); });
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.addEventListener('click', function(){
+      document.querySelectorAll('.chip').forEach(function(x){x.classList.remove('is-on')});
+      c.classList.add('is-on');
+      var f=c.dataset.f;
+      document.querySelectorAll('.prod').forEach(function(p){
+        p.style.display = (f==='all'||p.dataset.kat===f) ? '' : 'none';
+      });
+    });
+  });
+  sync();
+})();
+</script>
+
+</body>
+</html>

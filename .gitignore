@@ -1,0 +1,30 @@
+# .gitignore dla PUBLICZNEGO repo dema (kopiowany do folderu dema PRZED `git add -A`).
+# Dema to czyste strony (HTML/CSS/JS/obrazy). Zaden plik roboczy/notatka/dane leada
+# NIE moze trafic do publicznego repo (chroni dane klienta = RODO).
+# Powod: 2026-07-02 w repo kmk-dachy wyciekly do historii pliki _HANDOVER-*.md i RESEARCH-*.md
+# z danymi klienta (imie/telefon/adres/kwota). To zabezpieczenie, zeby sie nie powtorzylo.
+
+# --- pliki robocze researchu/budowy (glowna przyczyna wycieku) ---
+_HANDOVER*
+HANDOVER*
+RESEARCH*
+research-*.md
+_recon*
+recon-*
+NOTATKI*
+notatki*
+_dane*
+_lead*
+*-dane-klienta*
+
+# --- wszystkie dokumenty tekstowe: strona-demo ich nie potrzebuje ---
+*.md
+*.txt
+
+# --- typowe smieci ---
+.DS_Store
+__pycache__/
+*.pyc
+*.log
+.env
+*.bak

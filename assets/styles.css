@@ -1,0 +1,642 @@
+/* ============================================================
+   STOLBASZ — premium, architektoniczny B2B fit-out
+   Jasna paleta, zero brązu. System wg premium-web-craft.
+   Projekt strony: Krzysztof Brzeziński
+   ============================================================ */
+
+:root{
+  /* PALETA — jasna, architektoniczna, chłodna */
+  --paper:#F2F1EE;          /* główne tło */
+  --paper-2:#E5E3DE;        /* sekcje alternatywne (chłodny jasny szary) */
+  --paper-3:#E5E3DE;        /* delikatne wypełnienia */
+  --ink:#1E1C1A;            /* tekst główny — chłodny grafit */
+  --ink-soft:#38332F;       /* nagłówki drugorzędne */
+  --muted:#88837B;          /* tekst poboczny */
+  --line:rgba(30,28,26,.12);/* hairline */
+  --accent:#836A42;         /* stonowany petrol-slate — jedyny akcent */
+  --accent-d:#67522F;
+  --accent-soft:rgba(131,106,66,.10);
+  --dark:#1E1C1A;           /* sekcje ciemne (stopka/CTA) */
+
+  /* ODSTĘPY — skala 4/8 */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px;
+  --space-6:32px; --space-7:48px; --space-8:64px; --space-9:96px; --space-10:128px;
+
+  /* TYPOGRAFIA — fluid clamp() (skala podbita 16.07.2026: większe, czytelniejsze litery — uwaga Adama) */
+  --text-sm:clamp(.9rem,.87rem + .12vw,1rem);
+  --text-base:clamp(1.08rem,1.04rem + .18vw,1.2rem);
+  --text-lg:clamp(1.24rem,1.15rem + .34vw,1.44rem);
+  --text-h3:clamp(1.34rem,1.22rem + .55vw,1.66rem);
+  --text-h2:clamp(2.1rem,1.66rem + 2.1vw,3.1rem);
+  --text-h1:clamp(2.9rem,2.1rem + 4vw,5.1rem);
+
+  /* PROMIENIE — architektoniczne, raczej ostre */
+  --r-sm:3px; --r-md:6px; --r-lg:10px;
+
+  /* RUCH */
+  --ease:cubic-bezier(.25,.46,.45,.94); --dur:.24s;
+
+  /* CIENIE — miękkie, warstwowe */
+  --sh-sm:0 1px 2px rgba(16,24,32,.04), 0 2px 8px rgba(16,24,32,.05);
+  --sh-md:0 2px 6px rgba(16,24,32,.05), 0 12px 28px -8px rgba(16,24,32,.12);
+  --sh-lg:0 6px 14px rgba(16,24,32,.07), 0 26px 56px -18px rgba(16,24,32,.22);
+
+  --hairline:1px solid var(--line);
+
+  --font-display:'Spectral',serif;
+  --font-body:'Source Sans 3',sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  font-size:var(--text-base);
+  line-height:1.65;
+  color:var(--ink);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+.wrap{width:min(92%,1180px);margin-inline:auto}
+section{padding-block:clamp(52px,6.5vw,96px)}
+
+h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.08;letter-spacing:-.02em;color:var(--ink)}
+h1{font-size:var(--text-h1);letter-spacing:-.035em}
+h2{font-size:var(--text-h2);letter-spacing:-.025em}
+h3{font-size:var(--text-h3)}
+p{max-width:65ch}
+
+.eyebrow{
+  font-family:var(--font-body);
+  font-size:var(--text-sm);
+  font-weight:600;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--accent);
+  display:inline-flex;align-items:center;gap:var(--space-3);
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--accent);display:inline-block}
+
+.muted{color:var(--muted)}
+.lead{font-size:var(--text-lg);line-height:1.55;color:var(--ink-soft);max-width:50ch}
+
+/* ---------- BUTTONS ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  font-weight:600;font-size:var(--text-sm);letter-spacing:.02em;
+  padding:var(--space-4) var(--space-6);
+  border-radius:var(--r-sm);
+  transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease);
+  cursor:pointer;border:1px solid transparent;
+}
+.btn-accent{background:var(--accent);color:#fff;box-shadow:var(--sh-sm)}
+.btn-accent:hover{background:var(--accent-d);transform:translateY(-2px);box-shadow:var(--sh-md)}
+.btn-accent:active{transform:translateY(0);box-shadow:var(--sh-sm)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.btn-light{background:#fff;color:var(--ink);box-shadow:var(--sh-sm)}
+.btn-light:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
+.btn .arr{transition:transform var(--dur) var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:var(--hairline);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;flex-direction:column;line-height:1}
+.brand .name{font-family:var(--font-display);font-weight:800;font-size:1.35rem;letter-spacing:.04em}
+.brand .sub{font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.nav-links{display:flex;align-items:center;gap:var(--space-6)}
+.nav-links a{font-size:var(--text-sm);font-weight:500;color:var(--ink-soft);position:relative;padding-block:4px;transition:color var(--dur) var(--ease)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;background:var(--accent);transition:width var(--dur) var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links .btn{padding:var(--space-2) var(--space-5)}
+/* przyciski w nav: właściwy kolor (przebij .nav-links a) + bez podkreślenia */
+.nav-links a.btn-accent{color:#fff}
+.nav-links a.btn-ghost,.nav-links a.btn-light{color:var(--ink)}
+.nav-links a.btn::after{display:none}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:8px}
+.nav-toggle span{width:24px;height:2px;background:var(--ink);transition:var(--dur)}
+
+/* ---------- HERO (split) ---------- */
+.hero{position:relative;overflow:hidden;border-bottom:var(--hairline)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,60px);align-items:center;
+  padding-block:clamp(36px,4.5vw,64px)}
+.hero-copy .eyebrow{margin-bottom:var(--space-5)}
+.hero-copy h1{margin-bottom:var(--space-5)}
+.hero-copy .lead{margin-bottom:var(--space-7)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:var(--space-4)}
+.hero-art{position:relative;aspect-ratio:4/3;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-lg)}
+.hero-art img{width:100%;height:100%;object-fit:cover}
+.hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(18,24,28,.28))}
+.hero-badge{position:absolute;left:var(--space-5);bottom:var(--space-5);z-index:2;
+  background:rgba(252,252,251,.94);backdrop-filter:blur(4px);
+  border-radius:var(--r-md);padding:var(--space-4) var(--space-5);box-shadow:var(--sh-md);max-width:78%}
+.hero-badge strong{display:block;font-family:var(--font-display);font-size:1rem;letter-spacing:-.01em}
+.hero-badge span{font-size:var(--text-sm);color:var(--muted)}
+
+/* ---------- HERO duży / kinowy (strona główna) ---------- */
+.hero-cine{position:relative;min-height:clamp(560px,82vh,840px);min-height:clamp(560px,82svh,840px);display:flex;align-items:center;overflow:hidden;border-bottom:var(--hairline)}
+.hero-cine>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-cine::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(95deg,rgba(13,18,23,.86) 0%,rgba(13,18,23,.64) 32%,rgba(13,18,23,.24) 62%,rgba(13,18,23,.04) 100%)}
+.hero-cine .wrap{position:relative;z-index:2;padding-block:var(--space-8)}
+.hero-cine .hero-copy{max-width:660px}
+.hero-cine .eyebrow{color:#fff;margin-bottom:var(--space-5)}
+.hero-cine .eyebrow::before{background:#fff}
+.hero-cine h1{color:#fff;margin-bottom:var(--space-5);font-size:clamp(2.9rem,2rem + 4.4vw,5.2rem)}
+.hero-cine .lead{color:rgba(255,255,255,.92);max-width:48ch;margin-bottom:var(--space-7)}
+.hero-cine .hero-actions{display:flex;flex-wrap:wrap;gap:var(--space-4)}
+@media(max-width:680px){
+  .hero-cine{min-height:clamp(520px,76vh,640px);min-height:clamp(520px,76svh,640px);align-items:flex-end}
+  .hero-cine::after{background:linear-gradient(0deg,rgba(13,18,23,.9) 6%,rgba(13,18,23,.45) 55%,rgba(13,18,23,.25) 100%)}
+  .hero-cine .wrap{padding-bottom:var(--space-9)}
+}
+
+/* full-bleed hero variant (podstrony) */
+.pagehead{position:relative;min-height:46vh;min-height:46svh;display:flex;align-items:flex-end;overflow:hidden;border-bottom:var(--hairline)}
+.pagehead img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pagehead::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,24,28,.25),rgba(18,24,28,.62))}
+.pagehead .wrap{position:relative;z-index:2;padding-block:var(--space-9);color:#fff}
+.pagehead h1{color:#fff;max-width:18ch}
+.pagehead .eyebrow{color:#fff}
+.pagehead .eyebrow::before{background:#fff}
+.pagehead p{color:rgba(255,255,255,.86);margin-top:var(--space-4);max-width:54ch}
+
+/* ---------- STRIP (pasek skrótów / liczby) ---------- */
+.strip{background:var(--dark);color:#fff}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-6);padding-block:var(--space-8)}
+.strip .item .k{font-family:var(--font-display);font-size:clamp(1.6rem,1.2rem + 1.4vw,2.4rem);font-weight:800;letter-spacing:-.02em;color:#fff}
+.strip .item .v{font-size:var(--text-sm);color:rgba(255,255,255,.66);margin-top:var(--space-2);line-height:1.45}
+.strip .item{border-left:2px solid var(--accent);padding-left:var(--space-5)}
+
+/* ---------- SECTION HEAD ---------- */
+.head{max-width:48rem;margin-bottom:var(--space-8)}
+.head.center{margin-inline:auto;text-align:center}
+.head .eyebrow{margin-bottom:var(--space-4)}
+.head h2{margin-bottom:var(--space-4)}
+.head p{color:var(--muted);font-size:var(--text-lg);line-height:1.55}
+.head.center p{margin-inline:auto}
+
+/* ---------- INTRO SPLIT ---------- */
+.split{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(28px,5vw,80px);align-items:center}
+.split.rev{grid-template-columns:1.08fr .92fr}
+.split.rev .split-art{order:-1}
+.split-art{position:relative;aspect-ratio:5/4;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-lg)}
+.split-art img{width:100%;height:100%;object-fit:cover}
+.split-copy h2{margin-bottom:var(--space-5)}
+.split-copy p+p{margin-top:var(--space-4)}
+.split-copy .btn{margin-top:var(--space-6)}
+
+/* ---------- SERVICES (zakres) ---------- */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-5)}
+.svc{background:#fff;border:var(--hairline);border-radius:var(--r-md);padding:var(--space-7) var(--space-6);
+  transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease);
+  position:relative;overflow:hidden}
+.svc::before{content:"";position:absolute;left:0;top:0;width:3px;height:0;background:var(--accent);transition:height var(--dur) var(--ease)}
+.svc:hover{transform:translateY(-4px);box-shadow:var(--sh-md);border-color:transparent}
+.svc:hover::before{height:100%}
+.svc .ic{font-family:var(--font-display);font-size:.8rem;font-weight:700;letter-spacing:.12em;color:var(--accent);margin-bottom:var(--space-4)}
+.svc h3{margin-bottom:var(--space-3);font-size:1.22rem}
+.svc p{color:var(--muted);font-size:var(--text-base);line-height:1.6}
+
+/* big detailed service rows */
+.svc-row{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(20px,4vw,60px);align-items:center;padding-block:var(--space-8)}
+.svc-row+.svc-row{border-top:var(--hairline)}
+.svc-row.rev{grid-template-columns:1.2fr .8fr}
+.svc-row.rev .svc-row-art{order:-1}
+.svc-row-art{aspect-ratio:4/3;border-radius:var(--r-md);overflow:hidden;box-shadow:var(--sh-md)}
+.svc-row-art img{width:100%;height:100%;object-fit:cover}
+.svc-row h3{font-size:1.5rem;margin-bottom:var(--space-4)}
+.svc-row .num{font-family:var(--font-display);font-size:.85rem;font-weight:700;letter-spacing:.14em;color:var(--accent);display:block;margin-bottom:var(--space-3)}
+.svc-row ul{list-style:none;margin-top:var(--space-4);display:flex;flex-direction:column;gap:var(--space-2)}
+.svc-row li{position:relative;padding-left:var(--space-5);color:var(--muted);font-size:var(--text-base)}
+.svc-row li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:1px;background:var(--accent)}
+
+/* ---------- GALLERY (realizacje) ---------- */
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--space-4);grid-auto-rows:200px}
+/* GALERIA MASONRY — pionowe zdjęcia (portrety beauty/wellness) bez przycinania: kolumny, height auto */
+.gallery-masonry{column-count:3;column-gap:var(--space-4)}
+@media(max-width:900px){.gallery-masonry{column-count:2}}
+@media(max-width:560px){.gallery-masonry{column-count:1}}
+.gallery-masonry .m-tile{break-inside:avoid;margin:0 0 var(--space-4);padding:0;position:relative;overflow:hidden;border-radius:var(--r-md);border:1px solid var(--line)}
+.gallery-masonry .m-tile img{width:100%;height:auto;display:block}
+.gallery-masonry .m-tile .cap{position:absolute;left:0;right:0;bottom:0;padding:var(--space-4);color:#fff;background:linear-gradient(0deg,rgba(0,0,0,.55),transparent);font-size:var(--text-sm)}
+.gallery-masonry .m-tile .cap small{display:block;font-weight:400;opacity:.78;letter-spacing:.04em;text-transform:uppercase;font-size:.66rem;margin-top:3px}
+.tile{position:relative;overflow:hidden;border-radius:var(--r-md);box-shadow:var(--sh-sm);
+  transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.tile:hover{box-shadow:var(--sh-md)}
+.tile:hover img{transform:scale(1.05)}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:var(--space-5) var(--space-4) var(--space-4);
+  background:linear-gradient(transparent,rgba(18,24,28,.78));color:#fff;
+  font-size:var(--text-sm);font-weight:600;letter-spacing:.01em;
+  opacity:0;transform:translateY(8px);transition:var(--dur) var(--ease)}
+.tile:hover .cap{opacity:1;transform:translateY(0)}
+.tile .cap small{display:block;font-weight:400;opacity:.78;letter-spacing:.04em;text-transform:uppercase;font-size:.66rem;margin-top:3px}
+/* bento spans */
+.t-wide{grid-column:span 6}
+.t-tall{grid-column:span 6;grid-row:span 2}
+.t-std{grid-column:span 6}
+.t-third{grid-column:span 4}
+.t-two3{grid-column:span 8}
+
+/* ---------- TRUST / WIARYGODNOŚĆ ---------- */
+.trust{background:var(--paper-2)}
+.trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-5);margin-top:var(--space-7)}
+.trust-card{background:#fff;border-radius:var(--r-md);padding:var(--space-7) var(--space-6);box-shadow:var(--sh-sm);border-top:3px solid var(--accent)}
+.trust-card .big{font-family:var(--font-display);font-size:clamp(1.8rem,1.3rem + 1.6vw,2.6rem);font-weight:800;letter-spacing:-.02em;color:var(--ink);line-height:1}
+.trust-card h3{font-size:1.12rem;margin:var(--space-3) 0 var(--space-2)}
+.trust-card p{color:var(--muted);font-size:var(--text-base);line-height:1.55}
+
+/* ---------- CTA band ---------- */
+.cta{background:var(--dark);color:#fff;position:relative;overflow:hidden}
+.cta .wrap{display:grid;grid-template-columns:1.4fr .6fr;gap:var(--space-7);align-items:center;position:relative;z-index:2}
+.cta h2{color:#fff;max-width:20ch}
+.cta p{color:rgba(255,255,255,.74);margin-top:var(--space-4)}
+.cta-actions{display:flex;flex-direction:column;gap:var(--space-3);align-items:flex-start}
+.cta::before{content:"";position:absolute;right:-80px;top:-80px;width:360px;height:360px;border-radius:50%;
+  background:radial-gradient(circle,var(--accent-soft),transparent 70%)}
+
+/* ---------- CONTACT ---------- */
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,4vw,56px);align-items:start}
+.info-list{display:flex;flex-direction:column;gap:var(--space-2)}
+.info-row{display:flex;gap:var(--space-4);align-items:flex-start;padding-block:var(--space-4);border-bottom:var(--hairline)}
+.info-row .ic{flex:none;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;
+  background:var(--accent-soft);color:var(--accent);font-size:1.05rem}
+.info-row .lbl{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.info-row .val{font-weight:600;font-size:var(--text-base);margin-top:2px}
+.info-row a.val:hover{color:var(--accent)}
+.map{border:none;border-radius:var(--r-lg);box-shadow:var(--sh-md);width:100%;height:100%;min-height:380px;filter:grayscale(.2) contrast(1.02)}
+.form{background:#fff;border:var(--hairline);border-radius:var(--r-lg);padding:clamp(24px,3vw,40px);box-shadow:var(--sh-sm)}
+.form .fld{margin-bottom:var(--space-5)}
+.form label{display:block;font-size:var(--text-sm);font-weight:600;margin-bottom:var(--space-2)}
+.form input,.form textarea{width:100%;font-family:inherit;font-size:var(--text-base);color:var(--ink);
+  padding:var(--space-4);border:var(--hairline);border-radius:var(--r-sm);background:var(--paper);transition:border-color var(--dur)}
+.form input:focus,.form textarea:focus{outline:none;border-color:var(--accent);background:#fff}
+.form textarea{resize:vertical;min-height:120px}
+.form .note{font-size:var(--text-sm);color:var(--muted);margin-top:var(--space-3)}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--dark);color:#fff;padding-block:var(--space-9) var(--space-6)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:var(--space-7);margin-bottom:var(--space-8)}
+.foot-brand .name{font-family:var(--font-display);font-weight:800;font-size:1.4rem;letter-spacing:.04em}
+.foot-brand p{color:rgba(255,255,255,.62);margin-top:var(--space-4);font-size:var(--text-base);max-width:38ch}
+.foot-col h4{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:var(--space-4)}
+.foot-col a,.foot-col p{display:block;color:rgba(255,255,255,.82);font-size:var(--text-base);margin-bottom:var(--space-3)}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid rgba(255,255,255,.12);padding-top:var(--space-5);display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--space-3);
+  font-size:var(--text-sm);color:rgba(255,255,255,.55)}
+.foot-bot a:hover{color:#fff}
+
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:920px){
+  .hero-grid,.split,.split.rev,.svc-row,.svc-row.rev,.cta .wrap,.contact-grid,.foot-grid{grid-template-columns:1fr}
+  .split.rev .split-art,.svc-row.rev .svc-row-art{order:0}
+  .hero-art{aspect-ratio:16/10;max-height:420px}
+  .strip .wrap{grid-template-columns:repeat(2,1fr);gap:var(--space-7)}
+  .gallery{grid-auto-rows:180px}
+  .t-wide,.t-tall,.t-std,.t-third,.t-two3{grid-column:span 6}
+  .t-tall{grid-row:span 1}
+  .cta-actions{flex-direction:row;flex-wrap:wrap}
+  .foot-grid{gap:var(--space-6)}
+}
+@media(max-width:680px){
+  .nav-links{position:fixed;inset:72px 0 auto 0;background:var(--paper);flex-direction:column;align-items:stretch;
+    gap:0;padding:var(--space-4) 6%;border-bottom:var(--hairline);box-shadow:var(--sh-md);
+    transform:translateY(-120%);transition:transform var(--dur) var(--ease)}
+  .nav-links.open{transform:translateY(0)}
+  .nav-links a{padding-block:var(--space-4);border-bottom:var(--hairline)}
+  .nav-links .btn{margin-top:var(--space-3);justify-content:center}
+  .nav-toggle{display:flex}
+  .strip .wrap{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(6,1fr)}
+  .foot-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* ============================================================
+   PREMIUM LAYER — destylat deep-researchu branż (anty-AI, spokój).
+   Zmienne STOLBASZ (--accent/--ink/--paper/--line/--dark). Ruch ledwo
+   zauważalny, krzywa cubic-bezier(.16,.84,.44,1); prefers-reduced-motion
+   pokryte blanketem wyżej. Karty hairline zamiast cieni = #1 sygnał „nie-AI".
+   ============================================================ */
+
+/* więcej oddechu między sekcjami (liderzy: 110-130px) */
+section{padding-block:clamp(64px,8vw,128px)}
+
+/* 1) Aksamitny reveal — dłuższa, miękka krzywa zamiast „skoku" */
+.reveal{transition:opacity .9s cubic-bezier(.16,.84,.44,1),transform .9s cubic-bezier(.16,.84,.44,1);will-change:opacity,transform}
+/* stagger TYLKO w galerii (tam pozycja = porządek dzieci) */
+.gallery .reveal:nth-child(2){transition-delay:.07s}
+.gallery .reveal:nth-child(3){transition-delay:.14s}
+.gallery .reveal:nth-child(4){transition-delay:.21s}
+.gallery .reveal:nth-child(5){transition-delay:.28s}
+.gallery .reveal:nth-child(6){transition-delay:.35s}
+
+/* 2) Hero STATYCZNY na .hero-cine — Ken Burns CAŁKIEM WYŁĄCZONY 26.06 (3. zgłoszenie Szymona).
+   GENEZA: animowanie scale na <img> hero z teksturami (cegły/framugi) re-samplinguje obraz
+   klatka po klatce → na części ekranów drobne drganie/shimmer = „heroshot się trzęsie".
+   translateY usunięto wcześniej, scale-only + will-change/GPU NIE wystarczyły do GWARANCJI gładkości.
+   Krzysztof zażądał pewności („make sure, że błąd się nie pojawi") > efekt. Zero animacji = 0% drgania.
+   Delikatny zoom zostaje TYLKO w pełnoekranowych hero gastro/studio (hg-bg/hs-bg — tło, inny
+   mechanizm, chwalone, nigdy nie zgłaszane). NIE wracać do KB na .hero-cine bez realnego testu
+   na sprzęcie klienta — to ryzyko regresji „trzęsienia”. */
+/* BEZPIECZNY "wow" na hero = jednorazowy FADE-IN (opacity), nie zoom.
+   opacity nie dotyka bitmapy → gładkie na KAŻDYM zdjęciu/ekranie/GPU, zero ryzyka migotania.
+   Geometryczny ruch (scale/translate) na .hero-cine jest ZAKAZANY (bramka pilnuje). */
+@keyframes heroFade{from{opacity:0}to{opacity:1}}
+.hero-cine>img{transform:none;animation:heroFade 1.1s ease-out both}
+
+/* 3) Akcentowy hairline pod nagłówkiem sekcji, który „rysuje się" przy wejściu */
+.head h2{position:relative;padding-bottom:18px}
+.head h2::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--accent);transition:width 1s cubic-bezier(.16,.84,.44,1) .15s}
+.head.center h2::after{left:50%;transform:translateX(-50%)}
+.head.reveal.in h2::after,.head.center.reveal.in h2::after{width:54px}
+
+/* 4) Karty HAIRLINE zamiast cieni/zaokrągleń (najmocniejszy anty-AI detal) */
+.svc{background:transparent;border:1px solid var(--line);border-radius:var(--r-sm);box-shadow:none}
+.svc:hover{box-shadow:none;border-color:var(--accent);transform:translateY(-3px)}
+.trust-card{background:transparent;box-shadow:none;border:1px solid var(--line);border-top:2px solid var(--accent);border-radius:var(--r-sm)}
+.tile{box-shadow:none;border-radius:var(--r-sm)}
+.tile:hover{box-shadow:none}
+
+/* 5) Sticky-nav kondensuje się po przewinięciu (sygnał dopracowania) */
+.nav{transition:box-shadow .4s ease,background .4s ease}
+.nav.is-stuck{box-shadow:0 1px 0 var(--line),0 14px 30px -24px rgba(0,0,0,.45)}
+.nav-inner{transition:height .35s var(--ease)}
+.nav.is-stuck .nav-inner{height:60px}
+
+/* 6) MANIFESTO — pełnoekranowy cytat-bohater (zastępuje generyczne „Dlaczego my") */
+.manifesto{background:var(--paper-2);text-align:center}
+.manifesto .wrap{max-width:60rem}
+.manifesto p{font-family:var(--font-display);font-style:italic;font-size:clamp(1.6rem,1rem + 2.4vw,2.8rem);line-height:1.32;color:var(--ink-soft);margin-inline:auto;max-width:26ch;position:relative;padding-top:var(--space-8)}
+.manifesto p::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:54px;height:1px;background:var(--accent)}
+.manifesto p span{color:var(--accent);font-style:italic}
+
+/* 7) GATEWAYS — 3 duże bramy-zdjęcia (zamiast paska menu usług) */
+.gateways{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)}
+.gateway{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:var(--r-sm);display:block}
+.gateway img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),filter .5s var(--ease)}
+.gateway::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(18,24,28,.74))}
+.gateway:hover img{transform:scale(1.05);filter:brightness(1.05)}
+.gateway .g-ttl{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:var(--space-6) var(--space-5);color:#fff;font-family:var(--font-display);font-size:1.45rem;letter-spacing:-.01em;line-height:1.15}
+.gateway .g-ttl small{display:block;font-family:var(--font-body);font-size:var(--text-sm);font-weight:400;opacity:.82;letter-spacing:.03em;margin-top:5px}
+@media(max-width:760px){.gateways{grid-template-columns:1fr}.gateway{aspect-ratio:16/10}}
+
+/* 8) LOGO klienta w nagłówku (gdy podane --logo) */
+/* 52px domyślnie (feedback Bartka 06.07.2026: 40px ginęło, uwaga padła 3x; ~56px sprawdzone na żywym demie anna-borowiec-makeup) */
+.brand-logo{height:64px;width:auto;max-width:300px;object-fit:contain;display:block}
+.nav.is-stuck .brand-logo{height:52px}
+@media(max-width:680px){.brand-logo{height:46px;max-width:210px}}
+
+
+/* === RWD: nagłówki na wąskich ekranach (dodane 17.07.2026 razem z fixem clamp) ===
+   Po przywróceniu działania clamp() dolna granica --text-h1 (2.9rem) rozpychała
+   dokument przy długich polskich słowach na telefonach. Tu ją zjeżdżamy. */
+@media (max-width:560px){
+  :root{
+    --text-h1:clamp(1.9rem, 1.15rem + 4.4vw, 2.7rem);
+    --text-h2:clamp(1.5rem, 1rem + 3vw, 2.1rem);
+  }
+  .hero-cine h1{font-size:clamp(1.9rem, 1.15rem + 4.4vw, 2.7rem)}
+  h1,h2{overflow-wrap:break-word}
+}
+
+/* GODZINY (godziny_grid z briefu) — dzień po lewej, godziny po prawej. Wcześniej BRAK stylu
+   powodował sklejenie "Poniedziałek-Piątek8:00-20:00" (dodane 2026-07-21). Neutralne dla dem bez grafiku. */
+.godz{display:flex;flex-direction:column;gap:2px;max-width:440px;margin-top:8px}
+.godz-row{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:10px 0;border-bottom:1px solid var(--line)}
+.godz-row:last-child{border-bottom:0}
+.godz-row b{font-weight:600;color:var(--ink)}
+.godz-row span{color:var(--muted);white-space:nowrap}
+
+/* === MOTION LAYER v2 (silnik) === */
+/* ============================================================
+   MOTION LAYER v2 — warstwa RUCHU wspólna dla wszystkich rodzin (2026-07-26)
+   ------------------------------------------------------------
+   PO CO: dema były technicznie poprawne, ale statyczne („za mało efektowne",
+   K. 26.07). Ta warstwa dokłada to, co dziś odróżnia stronę premium od
+   porządnej: maskowane wejście nagłówków, zdjęcia odsłaniane kurtyną + zoom-out,
+   parallax sterowany scrollem (CSS scroll-driven, zero JS w pętli scrolla),
+   płynne przejścia MIĘDZY podstronami (View Transitions), stagger siatek.
+
+   ZASADY BEZPIECZEŃSTWA (wynikają z realnych wpadek — NIE łamać):
+   1. ⛔ ZERO ruchu geometrycznego na `.hero-cine>img` — skalowanie teksturowanej
+      bitmapy = shimmer („heroshot się trzęsie", 3x Szymon). Hero rusza się TYLKO
+      tekstem i tylko raz. Bramka predeploy tego pilnuje.
+   2. Stan początkowy (ukrycie) ustawia ZAWSZE JavaScript przez klasę `.mt-on`
+      na <html>. Bez JS / przy błędzie JS strona wygląda dokładnie jak przed tą
+      warstwą — nigdy pusty ekran (wpadka Zmalovane 29.06).
+   3. Używamy osobnych właściwości `scale:` / `translate:` zamiast `transform:` —
+      dzięki temu wejście NIE kasuje istniejących hoverów (które jadą na transform).
+   4. Każdy efekt „drogi" (parallax) tylko desktop + tylko gdy przeglądarka umie
+      scroll-driven animations. Mobile dostaje sam fade/mask (bateria, jank).
+   5. prefers-reduced-motion wyłącza wszystko (blanket w base.css + własne guardy).
+   ============================================================ */
+
+:root{
+  --mt-ease:cubic-bezier(.16,.84,.44,1);
+  --mt-step:70ms;          /* odstęp między kolejnymi elementami siatki */
+}
+
+/* ---------- 1) STAGGER — kolejne elementy siatki wchodzą po sobie ----------
+   JS ustawia --i (numer w grupie). Podbita specyficzność (:nth-child(n)) bije
+   sztywne delaye galerii z base.css, nie ruszając tamtego pliku. */
+.reveal{transition-delay:calc(var(--i,0) * var(--mt-step))}
+.gallery .reveal:nth-child(n),
+.gateways .reveal:nth-child(n),
+.svc-grid .reveal:nth-child(n){transition-delay:calc(var(--i,0) * var(--mt-step))}
+
+/* dłuższy, bardziej „aksamitny" dojazd + delikatny zoom-out całej karty */
+.mt-on .reveal{transition-duration:1s,1s}
+
+/* ---------- 2) NAGŁÓWKI — wjazd linia po linii zza maski ----------
+   JS dzieli tekst na realne linie (po pomiarze) i owija w .mt-line>i.
+   Efekt „szuflady": litery wjeżdżają z dołu, obcięte krawędzią linii. */
+.mt-lines .mt-line{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.mt-lines .mt-line > i{
+  display:block;font-style:inherit;
+  translate:0 108%;
+  transition:translate 1.05s var(--mt-ease) var(--mt-d,0s);
+}
+.mt-lines.mt-in .mt-line > i{translate:0 0}
+
+/* wariant awaryjny (nagłówek ma zagnieżdżony markup → nie dzielimy na linie) */
+.mt-fade{opacity:0;translate:0 18px;transition:opacity .9s var(--mt-ease) var(--mt-d,0s),translate .9s var(--mt-ease) var(--mt-d,0s)}
+.mt-fade.mt-in{opacity:1;translate:0 0}
+
+/* ---------- 3) ZDJĘCIA — odsłanianie „kurtyną" + zoom-out do naturalnej skali ----
+   clip-path jedzie od dołu do góry, jednocześnie obraz schodzi z 1.10 do 1.
+   Uwaga: `scale:` (nie transform) → hover .tile:hover img{transform:scale(1.05)}
+   nadal działa i nie kłóci się z wejściem. */
+.mt-on .mt-ph > img,
+.mt-on .mt-ph > picture > img{
+  clip-path:inset(0 0 100% 0);
+  scale:1.10;
+  transition:clip-path 1.15s var(--mt-ease) var(--mt-d,0s),
+             scale 1.6s var(--mt-ease) var(--mt-d,0s);
+}
+.mt-on .mt-ph.in > img,
+.mt-on .in .mt-ph > img,
+.mt-on .mt-ph.mt-in > img,
+.mt-on .mt-ph.in > picture > img,
+.mt-on .in .mt-ph > picture > img{clip-path:inset(0 0 0 0);scale:1}
+
+/* podpis kafla — delikatnie widoczny od razu, pełny na hover (mniej „martwych" kafli) */
+.mt-on .tile .cap{opacity:.001}
+.mt-on .tile.in .cap{opacity:.9;translate:0 0;transform:none}
+.mt-on .tile.in:hover .cap{opacity:1}
+
+/* ---------- 4) PARALLAX — sterowany scrollem, natywnym CSS (bez JS) ----------
+   animation-timeline:view() = przeglądarka sama liczy postęp elementu w oknie.
+   Zero listenerów scrolla → zero janku. Desktop only, tylko gdy wspierane. */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference) and (min-width:900px){
+    .mt-para{overflow:hidden}
+    .mt-para > img{
+      height:114%;
+      position:relative;top:-7%;
+      animation:mtPara linear both;
+      animation-timeline:view();
+      animation-range:cover 0% cover 100%;
+      will-change:translate;
+    }
+    @keyframes mtPara{from{translate:0 -4.5%}to{translate:0 4.5%}}
+
+    /* sekcje wchodzą z lekkim „oddechem" — zanika przy wyjeździe z ekranu */
+    .mt-breathe{
+      animation:mtBreathe linear both;
+      animation-timeline:view();
+      animation-range:entry 0% entry 70%;
+    }
+    @keyframes mtBreathe{from{opacity:.35}to{opacity:1}}
+  }
+}
+
+/* ---------- 4b) ŻYWY NAGŁÓWEK — przenikanie kadrów ----------
+   Warstwy leżą DOKŁADNIE na zdjęciu hero i różnią się tylko przezroczystością.
+   ⛔ Żadnego scale/translate — to skalowanie bitmapy dawało migotanie na teksturach.
+   Warstwy wstawia JS; bez niego nic się nie dzieje i nagłówek jest statyczny jak dotąd. */
+.mt-hero-layer{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:inherit;
+  opacity:0;transition:opacity 1.6s ease-in-out;
+  pointer-events:none;z-index:1;
+}
+/* ⚠️ KONIECZNE: warstwa jest zwykłym <img> wewnątrz hero, więc łapie ją reguła
+   `.hero-cine > img{animation:heroFade both}` z base.css. Animacja CSS ma pierwszeństwo przed
+   zwykłymi deklaracjami — trzymała przezroczystość na klatce startowej i przenikanie nie działało.
+   Zdejmujemy JEDYNIE to jednorazowe pojawienie się (heroFade), celowo BEZ !important, żeby
+   rodziny z delikatnym zoomem tła (gastro/auto/dom/studio) mogły go warstwie przekazać. */
+.hero-cine > img.mt-hero-layer{animation:none}
+.mt-hero-layer.mt-show{opacity:1}
+/* gdy pokazujemy kadr z rotacji, oryginalne zdjęcie zostaje pod spodem (nigdy nie znika
+   całkowicie — gdyby warstwa nie doszła, pod spodem zawsze jest pełne zdjęcie) */
+img[data-rotate].mt-under{opacity:1}
+/* treść nagłówka musi zostać NAD warstwami */
+.hero-cine > .wrap,.hero-cine .hero-copy,
+.hg-copy,.ha-copy,.hd-copy,.hs-copy,.hf-copy,.hk-copy,.hero-spa .wrap{position:relative;z-index:3}
+@media(prefers-reduced-motion:reduce){
+  .mt-hero-layer{display:none}
+}
+
+/* ---------- 5) PRZEJŚCIA MIĘDZY PODSTRONAMI (View Transitions) ----------
+   Klik w menu przestaje być białym mignięciem — strony przenikają, a pasek
+   nawigacji zostaje w miejscu (nazwany element). Przeglądarki bez wsparcia
+   nawigują normalnie — zero ryzyka. */
+@view-transition{navigation:auto}
+@media (prefers-reduced-motion:no-preference){
+  ::view-transition-old(root){animation:mtVtOut .26s ease both}
+  ::view-transition-new(root){animation:mtVtIn .42s var(--mt-ease) both}
+  @keyframes mtVtOut{from{opacity:1}to{opacity:0}}
+  @keyframes mtVtIn{from{opacity:0}to{opacity:1}}
+}
+.nav{view-transition-name:mt-nav}
+footer{view-transition-name:mt-foot}
+
+/* ---------- 6) PASEK POSTĘPU CZYTANIA — 2px w kolorze marki ----------
+   Też scroll-driven (bez JS). Wstawiany przez JS tylko gdy przeglądarka umie. */
+.mt-progress{
+  position:fixed;top:0;left:0;z-index:60;
+  height:2px;width:100%;
+  background:var(--accent);
+  transform-origin:0 50%;
+  scale:0 1;
+  pointer-events:none;
+}
+@supports (animation-timeline: scroll()){
+  .mt-progress{animation:mtProg linear both;animation-timeline:scroll(root block)}
+  @keyframes mtProg{from{scale:0 1}to{scale:1 1}}
+}
+
+/* ---------- 7) PRZYCISKI — przelot światła + magnes (JS) ----------
+   Nakładka jest przezroczysta i przelotowa → NIE zmienia kontrastu tekstu
+   (kontrasty WCAG policzone dla wszystkich rodzin zostają w mocy). */
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(100deg,transparent 32%,rgba(255,255,255,.20) 50%,transparent 68%);
+  translate:-120% 0;
+}
+@media (prefers-reduced-motion:no-preference){
+  .btn:hover::after{translate:120% 0;transition:translate .75s var(--mt-ease)}
+}
+.btn{transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),
+               background var(--dur) var(--ease),translate .25s ease-out}
+
+/* ---------- 8) LINKI NAWIGACJI / LISTY — mikro-detale ---------- */
+.mt-on .svc,.mt-on .trust-card{transition:transform .5s var(--mt-ease),border-color .35s ease,box-shadow .35s ease}
+.mt-on .svc:hover{transform:translateY(-4px)}
+
+/* kotwice nie chowają się pod przyklejonym paskiem */
+:target,[id]{scroll-margin-top:96px}
+
+/* ---------- 9) LICZBY (count-up) ---------- */
+.mt-num{font-variant-numeric:tabular-nums}
+
+/* ---------- 9b) ZWALNIANIE WARSTW GPU (27.07 — zgłoszenie „zamula na komputerze") ----------
+   `.reveal{will-change:opacity,transform}` z base.css każe przeglądarce trzymać dla KAŻDEGO
+   pojawiającego się elementu osobną warstwę w pamięci karty graficznej. Deklaracja jest stała —
+   warstwa nigdy nie jest zwalniana, więc na typowej podstronie wisi ich ~26 przy ~157 elementach.
+   Na komputerze ze zintegrowaną grafiką to realny koszt (pamięć + praca kompozytora).
+   Element, który już wjechał, nie będzie się więcej animował → warstwa jest zbędna.
+   ⚠️ KLUCZOWE: NIE wolno tego wiązać z klasą `.in` — ona pojawia się w chwili STARTU przejścia,
+   więc zdjęlibyśmy warstwę dokładnie wtedy, gdy jest potrzebna. Klasę `mt-settled` dokłada JS
+   dopiero po `transitionend`, czyli gdy ruch faktycznie się skończył. Brak JS = zostaje jak było. */
+.reveal.mt-settled{will-change:auto}
+.mt-settled > img,.mt-settled > picture > img{will-change:auto}
+
+/* ---------- 10) WYŁĄCZNIK GLOBALNY ----------
+   Gdy user woli mniej ruchu — zdejmujemy wszystko, łącznie ze scroll-driven
+   (blanket z base.css nie obejmuje animation-timeline). */
+@media (prefers-reduced-motion:reduce){
+  .mt-lines .mt-line > i{translate:0 0}
+  .mt-fade{opacity:1;translate:0 0}
+  .mt-on .mt-ph > img,.mt-on .mt-ph > picture > img{clip-path:none;scale:1}
+  .mt-para > img{animation:none;height:100%;top:0}
+  .mt-breathe{animation:none}
+  .mt-progress{display:none}
+  .mt-on .tile .cap{opacity:0}
+}
+
+
+/* === auto-paleta ze zdjęć klienta (dopasowanie do estetyki socials) === */
+:root{--accent:#6F7229;--accent-d:#4D5019;--accent-soft:rgba(111,114,41,0.10);--paper:#F9F9F8;--paper-2:#EFEFED;--paper-3:#E8E8E5;}
