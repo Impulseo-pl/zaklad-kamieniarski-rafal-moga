@@ -640,3 +640,48 @@ footer{view-transition-name:mt-foot}
 
 /* === auto-paleta ze zdjęć klienta (dopasowanie do estetyki socials) === */
 :root{--accent:#6F7229;--accent-d:#4D5019;--accent-soft:rgba(111,114,41,0.10);--paper:#F9F9F8;--paper-2:#EFEFED;--paper-3:#E8E8E5;}
+
+/* === HERO-FIT (29.07.2026) — hero DOPASOWUJE SIĘ do wysokości okna =========================
+   Zgłoszenie K. 29.07: na jego laptopie przyciski CTA w hero były ucięte dolną krawędzią
+   (Modern House). Pomiar headless (1512x879 → realny widok 792 px): dolna krawędź CTA
+   wypadała 123 px POD ekranem. Nawet przy maksymalnym oknie (982) było -20 px.
+
+   DLACZEGO POPRZEDNI FIX NIE DZIAŁAŁ: 27.07 dołożyliśmy @media(max-height:820px) — próg.
+   Widok K. ma ~792-895 px, czyli TUŻ NAD progiem → reguła w ogóle się nie włączała.
+   Progi są kruche: każdy inny laptop/dok/pasek zakładek przesuwa granicę.
+
+   ROZWIĄZANIE: zero progów. Każdy rozmiar, który decyduje o wysokości hero (typografia,
+   odstępy, padding), dostaje `min(dotychczasowa-wartość, X svh)` — czyli na wysokim ekranie
+   nic się nie zmienia, a im niższe okno, tym płynniej mniejsze. Treści NIE ucinamy.
+
+   Doklejane na SAM KONIEC styles.css (po motion) → wygrywa kaskadę, nie rusza reguł w miejscu.
+   Weryfikacja: tools-retrofit/measure_fold.py (mierzy zapas pod CTA dla 720/800/879/982). */
+
+/* ---------- HERO KINOWY (strona główna, rodziny „editorial") ---------- */
+.hero-cine .wrap{padding-block:min(var(--space-8),4svh)}
+.hero-cine .eyebrow{margin-bottom:min(var(--space-5),2svh)}
+.hero-cine h1{font-size:min(clamp(2.9rem,2rem + 4.4vw,5.2rem),7.6svh);
+  margin-bottom:min(var(--space-5),2.4svh)}
+.hero-cine .lead{font-size:min(1.125rem,2.3svh);line-height:1.55;
+  margin-bottom:min(var(--space-7),3.2svh)}
+
+/* ---------- HERO FACHOWCY — wariant A (pełny ekran) ---------- */
+.hf-panel{padding-top:min(clamp(6.5rem,13vh,9rem),11svh);
+  padding-bottom:min(clamp(2.6rem,6vh,3.6rem),4svh)}
+.hf-title{font-size:min(clamp(2.3rem,1.6rem + 3.2vw,4.3rem),7svh);
+  margin-top:min(var(--space-4),1.8svh);margin-bottom:min(var(--space-4),1.8svh)}
+.hf-lead{font-size:min(1.18rem,2.3svh);line-height:1.5}
+.hf-phone{margin-top:min(var(--space-6),2.8svh);margin-bottom:min(var(--space-5),2.2svh)}
+.hf-phone-num{font-size:min(clamp(2rem,1.5rem + 2.4vw,3.05rem),5.2svh)}
+.hf-trust{margin-top:min(var(--space-6),2.6svh);padding-top:min(var(--space-4),1.6svh)}
+
+/* Telefon: tam liczy się czytelność, nie upychanie — skalowanie wysokością wyłączone,
+   bo przy 844 px wysokości ekranu svh-limity zaczęłyby zmniejszać tekst bez potrzeby. */
+@media(max-width:680px){
+  .hero-cine h1{font-size:clamp(1.9rem,1.15rem + 4.4vw,2.7rem)}
+  .hero-cine .lead{font-size:.98rem}
+  .hf-title{font-size:clamp(2.1rem,1.6rem + 3.2vw,3rem)}
+  .hf-lead{font-size:1rem}
+  .hf-phone-num{font-size:clamp(1.9rem,1.5rem + 2.4vw,2.5rem)}
+}
+/* === /HERO-FIT === */
