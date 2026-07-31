@@ -1,7 +1,7 @@
 /* ============================================================
    STOLBASZ — premium, architektoniczny B2B fit-out
    Jasna paleta, zero brązu. System wg premium-web-craft.
-   Projekt strony: Krzysztof Brzeziński
+   Projekt strony: Impulseo (impulseo.pl)
    ============================================================ */
 
 :root{
@@ -685,3 +685,19 @@ footer{view-transition-name:mt-foot}
   .hf-phone-num{font-size:clamp(1.9rem,1.5rem + 2.4vw,2.5rem)}
 }
 /* === /HERO-FIT === */
+
+
+/* ====== IMPULSEO-FIX-20260731 ======================================================
+   1) PODPIS w stopce jest teraz linkiem do impulseo.pl - ma być widocznie klikalny.
+   2) ŻYWY NAGŁÓWEK: warstwa przenikających kadrów (.mt-hero-layer) miała z-index:1, więc
+      lądowała NAD przyciemnieniem hero, a w rodzinie „fachowcy" nawet nad panelem z tekstem
+      (.hf-panel nie miał własnego z-index). Efekt: przy zmianie zdjęcia napis znikał i wracał.
+      Teraz warstwa idzie tam, gdzie zdjęcie tła (z-index:-2), a treść nagłówka dostaje twardy
+      z-index:3. Zmieniają się WYŁĄCZNIE zdjęcia w tle - napis stoi nieruchomo.
+      (hero-cine celowo pominięte: tam img ma z-index:0 i układ był poprawny.) */
+.foot-bot a.foot-credit{color:rgba(255,255,255,.78);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.28)}
+.foot-bot a.foot-credit:hover{color:#fff;border-bottom-color:#fff}
+.hero-fach > img.mt-hero-layer,.hero-gastro > img.mt-hero-layer,.hero-auto > img.mt-hero-layer,
+.hero-dom > img.mt-hero-layer,.hero-studio > img.mt-hero-layer{z-index:-2}
+.hf-panel,.hf-inner,.hd-panel,.hk-panel,.ha-inner,.hs-inner,.hg-inner{position:relative;z-index:3}
+/* ====== koniec IMPULSEO-FIX-20260731 ====== */
